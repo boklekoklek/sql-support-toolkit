@@ -12,3 +12,11 @@ SELECT * FROM Tickets WHERE AgentId = NULL;
 
 -- 4b. The right way
 SELECT * FROM Tickets WHERE AgentId IS NULL;
+
+-- 5. How many tickets are there in total?
+SELECT COUNT(*) FROM Tickets;
+
+-- 6. How many tickets per status?
+SELECT Status, COUNT(*) AS Total
+FROM Tickets
+GROUP BY Status;
