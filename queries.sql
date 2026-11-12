@@ -28,3 +28,26 @@ GROUP BY Priority;
 SELECT CustomerId, COUNT(*) AS Total
 FROM Tickets
 GROUP BY CustomerId;
+
+-- 9. Every ticket with the customer's name
+SELECT t.Id, t.Title, c.Name AS Customer
+FROM Tickets t
+JOIN Customers c ON t.CustomerId = c.Id;
+
+-- 10. Every ticket with the agent's name (unassigned tickets stay in the list)
+SELECT t.Id AS TicketID, t.Title, a.Name AS Agent
+FROM Tickets t
+LEFT JOIN Agents a ON t.AgentId = a.Id;
+
+SELECT
+    c.Id AS CustomerID,
+    c.Name AS CustomerName,
+    COUNT(*) AS TotalTickets
+FROM Tickets t
+INNER JOIN Customers c
+    ON t.CustomerId = c.Id
+GROUP BY
+    c.Id,
+    c.Name
+ORDER BY
+    c.Id;
