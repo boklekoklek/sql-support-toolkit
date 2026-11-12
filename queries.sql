@@ -20,3 +20,11 @@ SELECT COUNT(*) FROM Tickets;
 SELECT Status, COUNT(*) AS Total
 FROM Tickets
 GROUP BY Status;
+
+SELECT Priority, COUNT(*) AS Total
+FROM Tickets
+GROUP BY Priority;
+
+SELECT CustomerId, COUNT(*) AS Total
+FROM Tickets
+GROUP BY CustomerId;
