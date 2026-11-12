@@ -51,3 +51,18 @@ GROUP BY
     c.Name
 ORDER BY
     c.Id;
+
+
+    SELECT Name, COUNT(*) AS Total FROM Customers GROUP BY Email HAVING COUNT(*) > 1;
+
+    -- 12. Find duplicate customers by email
+SELECT Email, COUNT(*) AS Total
+FROM Customers
+GROUP BY Email
+HAVING COUNT(*) > 1;
+
+-- 13. All of Ben Cruz's tickets across both customer records
+SELECT t.Id, t.Title, c.Id AS CustomerId
+FROM Tickets t
+JOIN Customers c ON t.CustomerId = c.Id
+WHERE c.Email = 'ben.cruz@example.com';
