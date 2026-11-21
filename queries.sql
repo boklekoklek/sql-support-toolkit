@@ -39,6 +39,8 @@ SELECT t.Id AS TicketID, t.Title, a.Name AS Agent
 FROM Tickets t
 LEFT JOIN Agents a ON t.AgentId = a.Id;
 
+
+
 SELECT
     c.Id AS CustomerID,
     c.Name AS CustomerName,
@@ -66,3 +68,26 @@ SELECT t.Id, t.Title, c.Id AS CustomerId
 FROM Tickets t
 JOIN Customers c ON t.CustomerId = c.Id
 WHERE c.Email = 'ben.cruz@example.com';
+
+-- 14. How many days has each unresolved ticket been open?
+SELECT Id, Title, Status,
+       CAST(julianday('2026-11-12') - julianday(CreatedAt) AS INTEGER) AS DaysOpen
+FROM Tickets
+WHERE Status != 'Closed'
+ORDER BY DaysOpen DESC;
+
+-- 15. Unresolved tickets open more than 7 days
+SELECT Id, Title, Status,
+       CAST(julianday('2026-11-12') - julianday(CreatedAt) AS INTEGER) AS DaysOpen
+FROM Tickets
+WHERE Status != 'Closed'
+  AND julianday('2026-11-12') - julianday(CreatedAt) > 7
+ORDER BY DaysOpen DESC;
+
+-- 15. Unresolved tickets open more than 7 days
+SELECT Id, Title, Status,
+       CAST(julianday('2026-11-12') - julianday(CreatedAt) AS INTEGER) AS DaysOpen
+FROM Tickets
+WHERE Status != 'Closed'
+  AND julianday('2026-11-12') - julianday(CreatedAt) >= 7
+ORDER BY DaysOpen DESC;
