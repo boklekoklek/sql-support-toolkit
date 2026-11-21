@@ -91,3 +91,7 @@ FROM Tickets
 WHERE Status != 'Closed'
   AND julianday('2026-11-12') - julianday(CreatedAt) >= 7
 ORDER BY DaysOpen DESC;
+
+-- after 
+-- 16. Index on CustomerId so lookups by customer don't scan every row
+CREATE INDEX IF NOT EXISTS idx_tickets_customerid ON Tickets(CustomerId);
